@@ -1,0 +1,33 @@
+---
+title: "HW 4"
+author: "Ruby Ashman"
+date: "10/10/2024"
+output: 
+  html_document:
+    number_sections: true
+---
+
+This homework is designed to give you practice working with statistical/philosophical measures of fairness. 
+
+#
+The paper linked below^[https://link.springer.com/article/10.1007/s00146-023-01676-3] discusses potential algorithmic bias in the context of credit.  In particular, banks are now regularly using machine learning algorithms to do an initial screening for credit-worthy loan applicants.  In section 4.5.2, this paper reports the rates at which various racial groups were granted a mortgage.  If we assume that it is a classifier making these predictions^[It is unclear whether this is an algorithm producing these predictions or human] what additional information would be necessary to assess this classifier according to equalized odds?
+
+According to equalized odds, the difference in the true positive rates for a non protected group and a protected group must be under a certain threshold, and the difference in the false positive rates for a non protected group and a protected group must be under a certain threshold. In order to assess this classifier according to equalized odds, we need access to the percentage of mortgages that are considered "false positives", or mortgages that should not have been granted, but were regardless, for each racial group. This allows for the calculation of true and false positive rates. 
+
+#
+Show or argue that the impossibility result discussed in class does not hold when our two fringe cases^[a) perfect predicting classifier and b) perfectly equal proportions of ground truth class labels across the protected variable] are met.  
+
+The impossibility result discussed in class stated that no single classifier is able to satisfy independence, sufficiency, and separation simultaneously. The impossibility result or incompleteness theorem discussed in class does not hold when a perfect predicting classifier is developed because it would allow for 100% accuracy across all groups with false positive rates equivalent to zero. Despite this, the model would not hold if the true values of the data did not fit the relative proportions required for independence, sufficiency, and separation, even if the classification is 100% true. Therefore, even if these tests are used to assess a classifier, they will not pass a perfectly accurate predictor that simply represents a population that has very different true values. Additionally, the impossibility result discussed in class does not hold when perfectly equal proportions of ground truth class labels across the protected variable are met because any test for disparate impact will be equal to one due to each groups equivalent base rate (passing), the difference between both the false positives and true positive values will be equal to zero (passing), and the difference calculated in the statistical/ demographic parity test will also be equal to 0 (passing), therefore fulfilling all 3 requirements and challenging the impossibility result. 
+
+#
+
+How would Rawls's Veil of Ignorance define a protected class?  Further, imagine that we preprocessed data by removing this protected variable from consideration before training out algorithm.  How could this variable make its way into our interpretation of results nonetheless?
+
+Rawl's veil of ignorance, which requires the complete loss of personal circumstances and experiences in order to craft a perception that assigns an impartial view to everyone, would define a protected class as a minority group with the least resources at their fingertips, and a reduced ability to achieve the "baseline quality of life". Despite removal of a protected variable, such as race, many other factors could find their way into our interpretation nonetheless. For example, section 4.5.2 on racial discrimination in the mortgage text explained the impacts of "reverse redlining", which involved the identification of minority groups by financial institutions and intentional targeting of these groups to push high rate mortgages via sub-primes. Attacks like these on minority groups introduce cycles of debt and poverty into familial lines, and demonstrate how even if the algorithm excludes race, information like home adress and income can be a reflection of race in our results. 
+
+#
+
+Based on all arguments discussed in class, is the use of COMPAS to supplement a judge's discretion justifiable.  Defend your position.  This defense should appeal to statistical and philosophical measures of fairness as well as one of our original moral frameworks from the beginning of the course.  Your response should be no more than a paragraph in length. 
+
+Based on the arguments discussed in class, I do not find the use of COMPAS to supplement a judge's discretion justifiable. Given the 64% accuracy rate, and it's violation of independence and equalized odds, this algorithm does not seem reliable or fair, especially when the cost of false positive predictions is weighed. From a utilitarian perspective, the cost of wrongfully indicting a single person drastically outweighs the benefits of efficiency and streamlining courtroom functions. Given the system we currently try individuals under, which allows for greater transparency, I find it statistically and ethically unjustifiable to transition to a mechanism that is not significantly more accurate, and is very difficult to check without developed software programming knowledge. 
+
